@@ -27,10 +27,10 @@ class HelloRailsController < ApplicationController
     
     payload = {
       'input'=>@userInput[:input],
-      'user_id'=>"owneruser_57e525c94b749",
-      'account_id'=>"user_57e525c94b749",
-      'bot_id'=>"bot57f0ca9fde8c5",
-      'bot_token'=>"e5354932c5a9349dc6cca478dbb67a3e",
+      'user_id'=>"111",
+      'account_id'=>"222",
+      'bot_id'=>"333",
+      'bot_token'=>"444",
       'command'=>"Normal",
       'type'=>"talk",
       'os'=>"robot",
