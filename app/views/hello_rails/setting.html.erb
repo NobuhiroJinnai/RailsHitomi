@@ -1,0 +1,15 @@
+<div style="text-align: center">
+	<h1 id="title_text">AI少女ひとみへようこそ</h1>
+	<div>
+		<%= form_for(@user, :url => {:controller => 'hello_rails', :action => 'new_user'}) do |f| %>
+			<%= f.text_field :name, :placeholder => "あなたの名前を入力してください。",class: "form_input",style: "width:60%;"%><br><br>
+  			<%= f.submit "Go",class: "form_submit"%>
+		<% end %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#title_text").textAnimation();
+	});
+</script>

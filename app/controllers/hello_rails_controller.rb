@@ -2,7 +2,19 @@ class HelloRailsController < ApplicationController
   def index
     @postParam = Input.new
     @userInput = Input.new
+    @userInput[:input] = "　"
     @output = Output.new(output: "お話ししましょう！");
+    bot_api("こんにちわ")#最初の発話
+  end
+  def setting
+    @user = User.new
+  end
+  def new_user
+    user_params = params.require(:user).permit(:name)
+    @user = User.new(user_params)
+    puts @user[:name]
+    user_name_api
+    redirect_to :action=> :index
   end
   def create
   end
@@ -11,10 +23,10 @@ class HelloRailsController < ApplicationController
     @postParam = Input.new(user_params)
     @userInput = Input.new(user_params)
     @postParam = Input.new
-    bot_api #チャットボット用APIへPOST
+    bot_api(@userInput[:input]) #チャットボット用APIへPOST
   end
   
-  def bot_api
+  def bot_api(user_input)
     require 'net/http'
     require 'uri'
  
@@ -26,11 +38,11 @@ class HelloRailsController < ApplicationController
     req["Content-Type"] = "application/json"
     
     payload = {
-      'input'=>@userInput[:input],
-      'user_id'=>"111",
-      'account_id'=>"222",
-      'bot_id'=>"333",
-      'bot_token'=>"444",
+      'input'=>user_input,
+      'user_id'=>"owneruser_57e525c94b749",
+      'account_id'=>"user_57e525c94b749",
+      'bot_id'=>"bot57f0ca9fde8c5",
+      'bot_token'=>"e5354932c5a9349dc6cca478dbb67a3e",
       'command'=>"Normal",
       'type'=>"talk",
       'os'=>"robot",
@@ -45,5 +57,35 @@ class HelloRailsController < ApplicationController
     #@output = Output.new(output: result["result"])
     @output = Output.new(output: outputArray[0])    
     render :action => :index
+  end
+  
+  def user_name_api
+    require 'net/http'
+    require 'uri'
+ 
+    uri = URI.parse("https://hitomisaya.silett.com/bot-studio-advanced/bot-studio/Saya/settings/access_me.php")
+    https = Net::HTTP.new(uri.host, uri.port)
+ 
+    https.use_ssl = true #HTTPS通信
+    req = Net::HTTP::Post.new(uri.request_uri)
+    req["Content-Type"] = "application/json"
+    
+    payload = {
+      'user_id'=>"owneruser_57e525c94b749",
+      'account_id'=>"user_57e525c94b749",
+      'bot_id'=>"bot57f0ca9fde8c5",
+      'bot_token'=>"e5354932c5a9349dc6cca478dbb67a3e",
+      'command'=>"Normal",
+      'type'=>"talk",
+      'os'=>"robot",
+      'setting_type'=>'set_name',
+      'name'=>@user[:name],
+      'token'=>'token'
+    }.to_json
+    
+    req.body = payload
+    res = https.request(req)
+    result = ActiveSupport::JSON.decode(res.body) #結果をデコード
+    puts result["result"]
   end
 end

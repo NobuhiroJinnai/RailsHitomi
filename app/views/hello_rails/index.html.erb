@@ -1,20 +1,22 @@
+<div style="float: left;">
+<%= link_to 'タイトル画面に戻る', '/hello_rails/setting',class: "title_button" %><br>
+</div>
 
-<div style="text-align: center">
-<h1>AI少女ひとみ</h1>
-<p id = "hitomi_output"><%= @output[:output] %></p>
- 
+<div style="text-align: center;clear: both;"><br>
+
+<p id = "hitomi_output"><%= @output[:output] %></p> 
 <%= image_tag 'grad.png',:height => '300' %>
 <p id = "user_input"><%= @userInput[:input] %></p>
 <%= form_for(@postParam, :url => {:controller => 'hello_rails', :action => 'update'},html: {id: 'input_form'},data: { remote: true }) do |f| %>
-  <%= f.text_field :input, :placeholder => "ひとみにはなしかける",id: "input"%>
-  <%= f.submit %>
+  <%= f.text_field :input, :placeholder => "ひとみにはなしかける",id: "input",class: "form_input"%>
+  <%= f.submit "送信",class: "form_submit"%>
 <% end %>
 </div>
 
 
 <script type="text/javascript">
 	$('#input_form').submit(function(){
-		$('#hitomi_output').text("");
+		$('#hitomi_output').text("　");
 		$('#user_input').text($('#input').val());
     })
 </script>
