@@ -39,10 +39,10 @@ class HelloRailsController < ApplicationController
     
     payload = {
       'input'=>user_input,
-      'user_id'=>"owneruser_57e525c94b749",
-      'account_id'=>"user_57e525c94b749",
-      'bot_id'=>"bot57f0ca9fde8c5",
-      'bot_token'=>"e5354932c5a9349dc6cca478dbb67a3e",
+      'user_id'=>"aaa",
+      'account_id'=>"bbb",
+      'bot_id'=>"ccc",
+      'bot_token'=>"ddd",
       'command'=>"Normal",
       'type'=>"talk",
       'os'=>"robot",
@@ -71,10 +71,10 @@ class HelloRailsController < ApplicationController
     req["Content-Type"] = "application/json"
     
     payload = {
-      'user_id'=>"owneruser_57e525c94b749",
-      'account_id'=>"user_57e525c94b749",
-      'bot_id'=>"bot57f0ca9fde8c5",
-      'bot_token'=>"e5354932c5a9349dc6cca478dbb67a3e",
+      'user_id'=>"aaa",
+      'account_id'=>"bbb",
+      'bot_id'=>"ccc",
+      'bot_token'=>"ddd",
       'command'=>"Normal",
       'type'=>"talk",
       'os'=>"robot",
