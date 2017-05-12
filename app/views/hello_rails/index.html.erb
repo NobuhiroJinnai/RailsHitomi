@@ -1,16 +1,28 @@
 <div style="float: left;">
-<%= link_to 'タイトル画面に戻る', '/hello_rails/setting',class: "title_button" %><br>
+<%= link_to 'タイトル画面に戻る', '/hello_rails/setting',class: "title_button" %>
+<a class="title_button" onclick="ShowModal('#modal-content-change-color')">着せ替え</a>
+<br>
 </div>
 
 <div style="text-align: center;clear: both;"><br>
 
 <p id = "hitomi_output"><%= @output[:output] %></p> 
-<%= image_tag 'grad.png',:height => '300' %>
+<%= image_tag 'grad.png',:height => '300' ,id: "hitomi_image"%>
 <p id = "user_input"><%= @userInput[:input] %></p>
 <%= form_for(@postParam, :url => {:controller => 'hello_rails', :action => 'update'},html: {id: 'input_form'},data: { remote: true }) do |f| %>
   <%= f.text_field :input, :placeholder => "ひとみにはなしかける",id: "input",class: "form_input"%>
   <%= f.submit "送信",class: "form_submit"%>
 <% end %>
+</div>
+
+
+<div id="modal-content-change-color"class="popup" >
+	着せ替えを選択<br><br>
+	<a class="title_button"onclick="ChangeHitomiColor('#hitomi_image','blue'),ModalFadeOut('#modal-content-change-color')">青のひとみ</a><br>
+	<a class="title_button"onclick="ChangeHitomiColor('#hitomi_image','pink'),ModalFadeOut('#modal-content-change-color')">ピンクのひとみ</a><br>
+	<a class="title_button"onclick="ChangeHitomiColor('#hitomi_image','black'),ModalFadeOut('#modal-content-change-color')">黒のひとみ</a><br>
+	<a class="title_button"onclick="ChangeHitomiColor('#hitomi_image','original'),ModalFadeOut('#modal-content-change-color')">オリジナル</a><br><br>
+	<a class="modal-close">閉じる</a>
 </div>
 
 
